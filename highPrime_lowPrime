@@ -1,12 +1,12 @@
 void isPrime(int arr[], int n) {
     int max_val = *max_element(arr, arr + n);
     vector <bool> isPrime(max_val + 1, true);
-    isPrime[0] = isPrime[1] = false;
+    isPrime[0] = isPrime[1] = 0;
     for (int i = 2; i <= max_val; ++i)
     {
-        if (isPrime[i] == true) {
+        if (isPrime[i] == 1) {
             for (int j = 2 * i; j <= max_val ; j += i) {
-                isPrime[j] = false;
+                isPrime[j] = 0;
             }
         }
     }
