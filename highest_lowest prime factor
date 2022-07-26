@@ -1,1 +1,43 @@
+const ll N = 1e7 + 10;
+vector <bool> isPrime(N, 1);
+vector <ll> lp(N, 0), hp (N, 0);
 
+int main() {
+    isPrime[0] = isPrime[1] = false;
+    for (int i = 2; i < N; ++i){
+        if (isPrime[i]){
+            for (int j = 2 * i; j < N; j += i){
+                isPrime[j] = false;
+                hp[j] = i;
+                if (lp[j] == 0){
+                    lp[j] = i;
+                }
+            }
+        }
+    }
+    int num;
+    cin >> num;
+    vector <ll > factors;
+    while (num > 1) {
+        int prime_factor = hp[num];
+        while(num % prime_factor == 0){
+            num /= prime_factor;
+            factors.pb(prime_factor);
+        }
+    }
+    ////This upper code block retrives highest prime factor of the user enter no and then it uses that prime factor to extract other primes
+    //u can also do it with prime
+    /*
+    unordered_map <ll, ll> factors;
+    while (num > 1) {
+        int prime_factor = hp[num];
+        while (num % prime_factor == 0) {
+            num /= prime_factor;
+            factors[prime_factor]++;
+        }
+    }
+    */
+    for(auto ptr : factors){
+        cout << ptr <<" ";
+    }
+}
